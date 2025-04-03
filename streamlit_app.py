@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+import requests
 
 helpful_links = [
     "https://docs.streamlit.io",
@@ -47,7 +48,6 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered, ' + name_on_order +'!', icon="✅")
 
-import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 if smoothiefroot_response.status_code == 200:
     st.text(smoothiefroot_response.json())
